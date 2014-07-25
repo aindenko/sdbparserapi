@@ -1,0 +1,1 @@
+web: gunicorn sdbparserapi.wsgi:api --log-file -
