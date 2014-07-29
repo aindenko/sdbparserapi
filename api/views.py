@@ -3,7 +3,6 @@ from api.models import Message
 from api.serializers import MessageSerializer,UserSerializer, GroupSerializer
 
 from django.contrib.auth.models import User, Group
-from rest_framework import generics
 
 
 class MessageViewSet(viewsets.ModelViewSet):
@@ -13,31 +12,17 @@ class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
 
-
-class UserList(generics.ListCreateAPIView):
+class UserViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that represents a list of users.
+    API endpoint that allows users to be viewed or edited.
     """
-    model = User
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    API endpoint that represents a single user.
-    """
-    model = User
-    serializer_class = UserSerializer
 
-class GroupList(generics.ListCreateAPIView):
+class GroupViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that represents a list of groups.
+    API endpoint that allows groups to be viewed or edited.
     """
-    model = Group
-    serializer_class = GroupSerializer
-
-class GroupDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    API endpoint that represents a single group.
-    """
-    model = Group
+    queryset = Group.objects.all()
     serializer_class = GroupSerializer
